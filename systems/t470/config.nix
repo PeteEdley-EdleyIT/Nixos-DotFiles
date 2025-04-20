@@ -1,7 +1,7 @@
 {config, lib, ...} :
 {
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "peter-laptop";
 }
