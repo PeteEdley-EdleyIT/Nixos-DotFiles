@@ -13,6 +13,7 @@ in
 
   environment.systemPackages = with pkgs; [
 		  freeshowApp
+      bitwarden-desktop
 	  ];
 
   home-manager.users.petere = {
@@ -33,6 +34,7 @@ in
         };
       };
     };
+
 
     programs.zsh = {
       enable = true;
