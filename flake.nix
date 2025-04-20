@@ -12,8 +12,8 @@
   let
     lib = nixpkgs.lib;
     system = "x86_64-linux";
-    device = "virtual";
-    hostname = "nixos-virtual";
+    device = "t470";
+    hostname = "peter-laptop";
     pkgs = import nixpkgs { inherit system; };
 
   in {
