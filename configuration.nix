@@ -1,4 +1,4 @@
-{ config, pkgs, lib,  ... }:
+{ config, pkgs, lib, device, ... }:
 
 {
   imports =
@@ -70,6 +70,7 @@
   services.tailscale.enable = true;
   environment.systemPackages = with pkgs; [
     rustdesk-flutter
+    gnome-software
   ];
 
   systemd.services.tailscale-autoconnect = {

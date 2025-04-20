@@ -19,14 +19,16 @@
     nixosConfigurations = {
       nixos = lib.nixosSystem {
         inherit system;
+        specialArgs = {
+          inherit device;
+        };
 
         modules = [
           home-manager.nixosModules.home-manager
           {
             home-manager.extraSpecialArgs.flake-inputs = inputs;
           }
-          ./systems/${device}/config.nix
-          ./configuration.nix #{inherit device;}
+          ./configuration.nix
           ./modules/systemfonts.nix
           ./users/petere/home.nix
         ];
