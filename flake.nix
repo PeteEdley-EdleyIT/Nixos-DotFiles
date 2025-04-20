@@ -11,7 +11,8 @@
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
   let
     lib = nixpkgs.lib;
-    system = "x86_64-linux"; # Or your system
+    system = "x86_64-linux";
+    device = "virtual";
     pkgs = import nixpkgs { inherit system; };
 
   in {
@@ -24,7 +25,8 @@
           {
             home-manager.extraSpecialArgs.flake-inputs = inputs;
           }
-          ./configuration.nix
+          ./systems/${device}/config.nix
+          ./configuration.nix #{inherit device;}
           ./modules/systemfonts.nix
           ./users/petere/home.nix
         ];

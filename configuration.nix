@@ -1,16 +1,12 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib,  ... }:
 
 {
   imports =
     [
       ./hardware-configuration.nix
+      ./systems/${device}/config.nix
     ];
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = true;
-
-  networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/London";
