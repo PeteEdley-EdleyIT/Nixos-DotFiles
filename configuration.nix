@@ -1,5 +1,5 @@
 { config, pkgs, lib, device, hostname, ... }:
-
+# Config for all devices
 {
   imports =
     [
