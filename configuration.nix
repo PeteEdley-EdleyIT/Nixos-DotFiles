@@ -1,9 +1,9 @@
-{ config, pkgs, lib, device, ... }:
+{ config, pkgs, lib, device, hostname, ... }:
 
 {
   imports =
     [
-      ./hardware-configuration.nix
+      ./systems/${device}/hardware-configuration.nix
       ./systems/${device}/config.nix
     ];
 

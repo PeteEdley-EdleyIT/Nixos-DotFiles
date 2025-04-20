@@ -13,14 +13,16 @@
     lib = nixpkgs.lib;
     system = "x86_64-linux";
     device = "virtual";
+    hostname = "nixos-virtual";
     pkgs = import nixpkgs { inherit system; };
 
   in {
     nixosConfigurations = {
-      nixos = lib.nixosSystem {
+      ${hostname} = lib.nixosSystem {
         inherit system;
         specialArgs = {
           inherit device;
+          inherit hostname;
         };
 
         modules = [
