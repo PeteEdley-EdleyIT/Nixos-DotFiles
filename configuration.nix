@@ -71,7 +71,6 @@
   environment.systemPackages = with pkgs; [
     rustdesk-flutter
     gnome-software
-    usbutils
   ];
 
   systemd.services.tailscale-autoconnect = {
