@@ -23,6 +23,7 @@
         specialArgs = {
           inherit device;
           inherit hostname;
+          inherit secrets;
         };
 
         modules = [
