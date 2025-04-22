@@ -16,12 +16,7 @@ in
       bitwarden-desktop
 	  ];
 
-  services = {
-    nextcloud-client = {
-      enable = true;
-      startInBackground = true;
-    };
-  };
+  services.nextcloud-client.enable = true;
 
   home-manager.users.petere = {
     home.stateVersion = "24.11";
