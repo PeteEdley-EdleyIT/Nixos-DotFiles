@@ -90,7 +90,7 @@
         exit 0
       fi
 
-      ${tailscale}/bin/tailscale up --ssh --authkey tskey-auth-kUnc6iyznQ11CNTRL-W5VE5mjkFRZQhW1k9URQRZbRBQvmv5uM
+      ${tailscale}/bin/tailscale up --ssh --authkey ${secrets.tailscale.authkey)
     '';
   };
 
