@@ -5,13 +5,9 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixos-06cb-009a-fingerprint-sensor = {
-      url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor?ref=24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nixos-06cb-009a-fingerprint-sensor, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
   let
     lib = nixpkgs.lib;
     system = "x86_64-linux";
@@ -33,7 +29,6 @@
           {
             home-manager.extraSpecialArgs.flake-inputs = inputs;
           }
-          nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
           ./configuration.nix
           ./modules/systemfonts.nix
           ./users/petere/home.nix
