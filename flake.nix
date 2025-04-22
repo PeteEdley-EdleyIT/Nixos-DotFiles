@@ -34,7 +34,7 @@
               ./users/petere/home.nix
             ];
           }
-          ./configuration.nix
+          ./configuration.nix {inherit secrets;}
           ./modules/systemfonts.nix
         ];
       };
