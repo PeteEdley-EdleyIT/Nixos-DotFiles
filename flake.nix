@@ -14,6 +14,7 @@
     device = "t470";
     hostname = "peter-laptop";
     pkgs = import nixpkgs { inherit system; };
+    secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
 
   in {
     nixosConfigurations = {
@@ -34,7 +35,6 @@
           }
           ./configuration.nix
           ./modules/systemfonts.nix
-          # ./users/petere/home.nix
         ];
       };
     };
