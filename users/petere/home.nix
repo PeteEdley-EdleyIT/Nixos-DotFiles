@@ -1,9 +1,7 @@
-{ config, pkgs, ...}:
+{ config, pkgs, home-manager, ... }:
 
-let 
-	freeshowApp = import ../../derivations/freeshow.nix { inherit pkgs; };
-in
-{
+let freeshowApp = import ../../derivations/freeshow.nix { inherit pkgs; };
+in {
   users.users.petere = {
     isNormalUser = true;
     description = "Peter Edley";
@@ -11,63 +9,47 @@ in
     shell = pkgs.zsh;
   };
 
-  environment.systemPackages = with pkgs; [
-		  freeshowApp
-      bitwarden-desktop
-	  ];
-
-  #services.nextcloud-client.enable = true;
-  services.nextcloud-client.enable=true;
-
   home-manager.users.petere = {
     home.stateVersion = "24.11";
-    imports = [];
-    home.packages = with pkgs; [ 
-      nixfmt 
-      nixd
-    ];
+    imports = [ ];
+
+    home.packages = with pkgs; [ nixfmt nixd freeshowApp bitwarden-desktop ];
+
+    services = { nextcloud-client.enable = true; };
 
     programs = {
       thunderbird = {
         enable = true;
-        profiles = {
-          default ={
-            isDefault = true;
-          };
+        profiles = { default = { isDefault = true; }; };
+      };
+      zsh = {
+        enable = true;
+        enableCompletion = true;
+        autosuggestion.enable = true;
+        syntaxHighlighting.enable = true;
+        autocd = true;
+        oh-my-zsh = {
+          enable = true;
+          plugins = [ "git" "thefuck" ];
+          theme = "lukerandall";
         };
       };
-    };
-
-
-    programs.zsh = {
-      enable = true;
-      enableCompletion = true;
-      autosuggestion.enable = true;
-      syntaxHighlighting.enable = true;
-      autocd = true;
-      oh-my-zsh = {
+      git = {
         enable = true;
-        plugins = ["git" "thefuck"];
-        theme = "lukerandall";
+        userName = "Peter Edley";
+        userEmail = "peter@edleyit.com";
+        extraConfig = { init.defaultBranch = "main"; };
       };
-    };
-    programs.git = {
-      enable = true;
-      userName = "Peter Edley";
-      userEmail = "peter@edleyit.com";
-      extraConfig = {
-        init.defaultBranch = "main";
+      vscode = {
+        enable = true;
+        package = pkgs.vscodium;
+        profiles.default.extensions = with pkgs.vscode-extensions; [
+          jnoortheen.nix-ide
+          mkhl.direnv
+          arrterian.nix-env-selector
+        ];
       };
-    };
-    programs.direnv.enable = true;
-    programs.vscode = {
-      enable = true;
-      package = pkgs.vscodium;
-      profiles.default.extensions = with pkgs.vscode-extensions; [
-        jnoortheen.nix-ide
-        mkhl.direnv
-        arrterian.nix-env-selector
-      ];
+      direnv = { enable = true; };
     };
   };
 }

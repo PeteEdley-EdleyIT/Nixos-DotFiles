@@ -28,10 +28,13 @@
           home-manager.nixosModules.home-manager
           {
             home-manager.extraSpecialArgs.flake-inputs = inputs;
+            imports = [
+              ./users/petere/home.nix
+            ];
           }
           ./configuration.nix
           ./modules/systemfonts.nix
-          ./users/petere/home.nix
+          # ./users/petere/home.nix
         ];
       };
     };
