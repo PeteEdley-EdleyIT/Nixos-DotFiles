@@ -1,4 +1,4 @@
-{ config, pkgs, lib, device, hostname, ... }:
+{ config, pkgs, lib, device, hostname, secrets, ... }:
 # Config for all devices
 {
   imports =
