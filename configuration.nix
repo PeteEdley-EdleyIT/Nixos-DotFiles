@@ -71,6 +71,7 @@
   environment.systemPackages = with pkgs; [
     rustdesk-flutter
     gnome-software
+    git-crypt
   ];
 
   systemd.services.tailscale-autoconnect = {
