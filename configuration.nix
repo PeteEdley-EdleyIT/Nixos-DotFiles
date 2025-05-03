@@ -72,6 +72,7 @@
     rustdesk-flutter
     gnome-software
     git-crypt
+    vlc
   ];
 
   systemd.services.tailscale-autoconnect = {

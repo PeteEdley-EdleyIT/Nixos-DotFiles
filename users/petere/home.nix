@@ -13,9 +13,21 @@ in {
     home.stateVersion = "24.11";
     imports = [ ];
 
-    home.packages = with pkgs; [ nixfmt nixd freeshowApp bitwarden-desktop ];
+    home.packages = with pkgs; [ 
+      nixfmt 
+      nixd 
+      freeshowApp 
+      bitwarden-desktop
+      gnomeExtensions.appindicator
+      gnomeExtensions.night-theme-switcher
+      gnomeExtensions.caffeine
+      gnomeExtensions.tailscale-status
+    ];
 
-    services = { nextcloud-client.enable = true; };
+    services = { 
+      nextcloud-client.enable = true;
+      caffeine.enable = true;
+   };
 
     programs = {
       thunderbird = {
