@@ -68,11 +68,14 @@
 
 
   services.tailscale.enable = true;
+  networking.firewall.allowedUDPPorts = [ 41641]; #Why need to check
+
   environment.systemPackages = with pkgs; [
     rustdesk-flutter
     gnome-software
     git-crypt
     vlc
+    tailscale
   ];
 
   systemd.services.tailscale-autoconnect = {
